@@ -10,18 +10,27 @@
  * @param	string
  * @return	string
  */
-if ( ! function_exists('site_url')) {
-	function site_url($uri = '') {
+/*if ( ! function_exists('site_url')) {
+	function site_url($uri = '',$domain = '') {
 		//判断是否是以http开头的
 		if(substr($uri, 0, 7) == 'http://') {
 			return $uri;
 		}
 
+		//do the rewrite rule
+		if(function_exists('rewrite')){
+			$uri = rewrite($uri);
+		}
 		
 		$CI =& get_instance();
-		return $CI->config->site_url($uri);
+		if ($domain){
+			$url = "http://".str_replace("http://{$domain}", "www",$CI->config->site_url($uri));
+			return $url;
+		}else{
+			return $CI->config->site_url($uri);
+		}
 	}
-}
+}*/
 /*
  * 会员企业站路径设置
  * uri:直接填写会员的域名即可 domain_name

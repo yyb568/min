@@ -10,7 +10,7 @@
  * @param	string
  * @return	string
  */
-/*if ( ! function_exists('site_url')) {
+if ( ! function_exists('site_url')) {
 	function site_url($uri = '',$domain = '') {
 		//判断是否是以http开头的
 		if(substr($uri, 0, 7) == 'http://') {
@@ -30,7 +30,7 @@
 			return $CI->config->site_url($uri);
 		}
 	}
-}*/
+}
 /*
  * 会员企业站路径设置
  * uri:直接填写会员的域名即可 domain_name

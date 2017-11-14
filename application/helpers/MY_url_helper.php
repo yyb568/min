@@ -35,9 +35,9 @@
 if ( ! function_exists('site_url')) {
 	function site_url($uri = '') {
 		//判断是否是以http开头的
-		if(substr($uri, 0, 7) == 'http://') {
-			return $uri;
-		}
+		// if(substr($uri, 0, 7) == 'http://') {
+		// 	return $uri;
+		// }
 
 		
 		$CI =& get_instance();

@@ -10,40 +10,27 @@
  * @param	string
  * @return	string
  */
-// if ( ! function_exists('site_url')) {
-// 	function site_url($uri = '',$domain = '') {
-// 		//判断是否是以http开头的
-// 		if(substr($uri, 0, 7) == 'http://') {
-// 			return $uri;
-// 		}
-
-// 		//do the rewrite rule
-// 		if(function_exists('rewrite')){
-// 			$uri = rewrite($uri);
-// 		}
-		
-// 		$CI =& get_instance();
-// 		if ($domain){
-// 			$url = "http://".str_replace("http://{$domain}", "www",$CI->config->site_url($uri));
-// 			return $url;
-// 		}else{
-// 			return $CI->config->site_url($uri);
-// 		}
-// 	}
-// }
-
-if ( ! function_exists('site_url')) {
-	function site_url($uri = '') {
+/*if ( ! function_exists('site_url')) {
+	function site_url($uri = '',$domain = '') {
 		//判断是否是以http开头的
-		// if(substr($uri, 0, 7) == 'http://') {
-		// 	return $uri;
-		// }
+		if(substr($uri, 0, 7) == 'http://') {
+			return $uri;
+		}
 
+		//do the rewrite rule
+		if(function_exists('rewrite')){
+			$uri = rewrite($uri);
+		}
 		
 		$CI =& get_instance();
-		return $CI->config->site_url($uri);
+		if ($domain){
+			$url = "http://".str_replace("http://{$domain}", "www",$CI->config->site_url($uri));
+			return $url;
+		}else{
+			return $CI->config->site_url($uri);
+		}
 	}
-}
+}*/
 /*
  * 会员企业站路径设置
  * uri:直接填写会员的域名即可 domain_name
@@ -81,20 +68,20 @@ if ( ! function_exists('rewrite')) {
  * @param	<string> $url 路径
  * @return	<string>
 */
-// function full_url($url = '') {
-// 	$url = site_url($url);
-// 	if (substr($url, 0, 7) != 'http://') {
-// 		if (!empty($_SERVER["HTTP_HOST"])) {
-// 			$url = 'http://'.$_SERVER["HTTP_HOST"].$url;
-// 		}else {
-// 			$CI =& get_instance();
+function full_url($url = '') {
+	$url = site_url($url);
+	if (substr($url, 0, 7) != 'http://') {
+		if (!empty($_SERVER["HTTP_HOST"])) {
+			$url = 'http://'.$_SERVER["HTTP_HOST"].$url;
+		}else {
+			$CI =& get_instance();
 			
-// 			$url = $CI->config->item('full_url').$url;
-// 		}
+			$url = $CI->config->item('full_url').$url;
+		}
 		
-// 	}
-// 	return $url;
-// }
+	}
+	return $url;
+}
 
 /**
  * 获取静态文件，images、js、css等的路径

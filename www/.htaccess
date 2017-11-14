@@ -1,0 +1,17 @@
+<FilesMatch ".(htm|html)$">
+    ForceType 'text/html; charset=UTF-8'
+</FilesMatch>
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_URI} !^(/index\.php|/static|/cache|/robots\.txt|/favicon\.ico|/uploads|/html)
+	RewriteRule ^(.*)$ /index.php/$1 [L]
+</IfModule>
+php_value memory_limit 50M 
+php_value post_max_size 20M 
+php_value upload_max_filesize 20M 
+php_value max_execution_time 300 
+php_value max_input_tim 300 
+php_value display_errors On

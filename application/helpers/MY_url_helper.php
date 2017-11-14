@@ -68,20 +68,20 @@ if ( ! function_exists('rewrite')) {
  * @param	<string> $url 路径
  * @return	<string>
 */
-function full_url($url = '') {
-	$url = site_url($url);
-	if (substr($url, 0, 7) != 'http://') {
-		if (!empty($_SERVER["HTTP_HOST"])) {
-			$url = 'http://'.$_SERVER["HTTP_HOST"].$url;
-		}else {
-			$CI =& get_instance();
+// function full_url($url = '') {
+// 	$url = site_url($url);
+// 	if (substr($url, 0, 7) != 'http://') {
+// 		if (!empty($_SERVER["HTTP_HOST"])) {
+// 			$url = 'http://'.$_SERVER["HTTP_HOST"].$url;
+// 		}else {
+// 			$CI =& get_instance();
 			
-			$url = $CI->config->item('full_url').$url;
-		}
+// 			$url = $CI->config->item('full_url').$url;
+// 		}
 		
-	}
-	return $url;
-}
+// 	}
+// 	return $url;
+// }
 
 /**
  * 获取静态文件，images、js、css等的路径

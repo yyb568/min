@@ -57,49 +57,6 @@ foreach((array)$city as $key => $val){
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">是否显示统计：</label>
-                                <div class="col-sm-4">
-                                	<div class="radio">
-                                        <label><input type="radio" value="1" id="show_static" name="show_static" <?php if ($info['show_static'] == 1){echo 'checked';} ?>>显示</label>
-                                    </div>
-                                    <div class="radio">
-                                        <label><input type="radio" value="0" id="show_static" name="show_static" <?php if ($info['show_static'] == 0){echo 'checked';} ?>>不显示</label>
-                                    </div>
-                                	<span class="help-block m-b-none">如：首云类似佣乐享第三方用户请选择</span>
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">权限类型：</label>
-                                <div class="col-sm-4">
-                                	<div class="radio">
-                                        <label><input type="radio" value="1" id="finance" name="finance" <?php if ($info['finance'] == 1){echo 'checked';} ?>>财务人员</label>
-                                    </div>
-                                    <div class="radio">
-                                        <label><input type="radio" value="2" id="finance" name="finance" <?php if ($info['finance'] == 2){echo 'checked';} ?>>地区管理员</label>
-                                    </div>
-                                
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">地区限制：</label>
-                                <div class="col-sm-2">
-                                		<button data-toggle="button" class="btn btn-primary btn-outline" type="button" onClick="switchVoid();">选择地区</button>
-	                                    <input type="hidden" name="area" id="area" value="<?=$info['province'] ?>,<?=$info['city']?>,<?=$info['district']?>">
-	                                    <div id="area_txt"><?=$_provinceList[$info['province']]['ProvinceName']?> - <?=$_cityList[$info['city']]['CityName']?> - <?=$_districtList[$info['district']]['DistrictName'] ?></div>
-                                </div>
-                            </div>
-	                            <div id="mach_ids" style="display: none;">
-	                            <div class="hr-line-dashed"></div>
-	                            <div class="form-group">
-	                                <label class="col-sm-2 control-label">管理机型：</label>
-	                                <div class="col-sm-10" id="mach_lists">
-		                                   
-		                                </div>
-	                            </div>
-	                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
                                 <label class="col-sm-2 control-label">选择权限:</label>
                                 <div class="col-sm-10">
                                 <?php if ($role == -1){ ?>

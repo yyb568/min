@@ -2,7 +2,7 @@
 
 /**
  * 控制器基类
- * add by yinyibin
+ * add by zhixiao476@gmail.com
  * 2015年12月10日11:33:26
  */
 if (ENVIRONMENT != 'product'){
@@ -29,14 +29,14 @@ class MY_Controller extends CI_Controller{
 	
 	/**
 	 * 初始化操作
-	 * add by yinyibin
+	 * add by zhixiao476@gmail.com
 	 * 2015年12月10日11:34:15
 	 */
 	public function __construct(){
 		parent::__construct();
-		// $this->isLogin();			// 检查登录状态
-		//$this->role();				//检查权限
-		//$this->getSetting();		// 获取配置信息
+		$this->isLogin();			// 检查登录状态
+		$this->role();				//检查权限
+		$this->getSetting();		// 获取配置信息
 		$this->template['uname'] = $this->uname;
 		$this->template['userinfo'] = $this->userinfo;
 		$this->template['finance'] = $this->finance;
@@ -45,7 +45,7 @@ class MY_Controller extends CI_Controller{
 	
 	/**
 	 * 判断用户是否登陆
-	 * add by yinyibin
+	 * add by zhixiao476@gmail.com
 	 * 2015年12月10日11:34:44
 	 */
 	public function isLogin(){
@@ -102,7 +102,7 @@ class MY_Controller extends CI_Controller{
 	
 	/**
 	 * 获取并检查权限
-	 * add by yinyibin
+	 * add by zhixiao476@gmail.com
 	 * 2016年08月04日16:41:20
 	 */
 	private function role(){
@@ -171,7 +171,7 @@ class MY_Controller extends CI_Controller{
 	
 	/**
 	 * 获取系统配置信息
-	 * add by yinyibin
+	 * add by zhixiao476@gmail.com
 	 * 2016年08月03日16:01:36
 	 */
 	private function getSetting(){
@@ -189,7 +189,7 @@ class MY_Controller extends CI_Controller{
 	
 	/**
 	 * 错误信息输出格式
-	 * add by yinyibin
+	 * add by zhixiao476@gmail.com
 	 * 2015年12月25日21:33:39
 	 */
 	public function showMessage($info){
@@ -200,7 +200,7 @@ class MY_Controller extends CI_Controller{
 	
 	/**
 	 * 统一的错误输出
-	 * add by yinyibin
+	 * add by zhixiao476@gmail.com
 	 * 2015年12月10日15:49:53
 	 */
 	public function splitJson($json,$status = 0,$type = 0) {

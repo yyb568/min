@@ -75,10 +75,10 @@ $query_builder = TRUE;
 #failover  当主库出现故障后，自动进行故障转移（这里需要自己配置户为主从的数据库关系）
 $db['product'] = array(
 		//'dsn'	=> '',
-		'hostname' => '127.0.0.1',
+		'hostname' => '106.14.117.93',
 		'port'     => 3306,
 		'username' => 'root',
-		'password' => 'zhixiao476?',
+		'password' => '123456',
 		'database' => 'dw_ylb',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => 'dw_',
@@ -98,11 +98,11 @@ $db['product'] = array(
 );
 $db['raw'] = array(
 		//'dsn'	=> '',
-		'hostname' => '127.0.0.1',
+		'hostname' => '106.14.117.93',
 		'port'     => 3306,
 		'username' => 'root',
-		'password' => 'zhixiao476',
-		'database' => 'dw_unrawdata',
+		'password' => '123456',
+		'database' => 'dw_ylb',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => 'dw_',
 		'pconnect' => FALSE,

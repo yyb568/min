@@ -2,14 +2,14 @@
 
 /**
  * 系统设置页面
- * add by zhixiao476@gmail.com
- * 2016年08月03日15:01:11
+ * add by yinyibin
+ * 2017年11月15日17:56:48
  */
 class Settings extends MY_Controller{
 	
 	/**
 	 * 初始化
-	 * add by zhixiao476@gmail.com
+	 * add by yinyibin
 	 * 2016年08月03日15:01:31
 	 */
 	public function __construct(){
@@ -19,8 +19,8 @@ class Settings extends MY_Controller{
 	
 	/**
 	 * 系统设置页面
-	 * add by zhixiao476@gmail.com
-	 * 2016年08月03日15:01:54
+	 * add by yinyibin
+	 * 2017年11月15日17:56:52
 	 */
 	public function index(){
 		
@@ -40,8 +40,8 @@ class Settings extends MY_Controller{
 	
 	/**
 	 * 保存配置信息
-	 * add by zhixiao476@gmail.com
-	 * 2016年08月03日15:47:26
+	 * add by yinyibin
+	 * 2017年11月15日17:56:52
 	 */
 	public function doSave($id = 0){
 		$dt = $this->input->post();

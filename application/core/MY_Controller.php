@@ -2,8 +2,8 @@
 
 /**
  * 控制器基类
- * add by zhixiao476@gmail.com
- * 2015年12月10日11:33:26
+ * add by yinyibin
+ * 2017年11月15日17:55:38
  */
 if (ENVIRONMENT != 'product'){
 	ini_set('memory_limit', '256M');
@@ -18,7 +18,6 @@ class MY_Controller extends CI_Controller{
 	protected $username;				//用户账号
 	protected $uname;					//姓名
 	protected $isLogin = 0;				//登陆状态，1表示已经登陆
-	protected $mymach;					// 当前登录用户机型列表
 	protected $finance;					// 当前用户权限类型  1:财务；2：管理员
 	protected $userinfo;
 	protected $parentmenuList;			// 当前用户权限下的父菜单
@@ -29,8 +28,8 @@ class MY_Controller extends CI_Controller{
 	
 	/**
 	 * 初始化操作
-	 * add by zhixiao476@gmail.com
-	 * 2015年12月10日11:34:15
+	 * add by yinyibin
+	 * 2017年11月15日17:55:38
 	 */
 	public function __construct(){
 		parent::__construct();
@@ -45,8 +44,8 @@ class MY_Controller extends CI_Controller{
 	
 	/**
 	 * 判断用户是否登陆
-	 * add by zhixiao476@gmail.com
-	 * 2015年12月10日11:34:44
+	 * add by yinyibin
+	 * 2017年11月15日17:55:38
 	 */
 	public function isLogin(){
 		$this->load->model("common_model");
@@ -102,8 +101,8 @@ class MY_Controller extends CI_Controller{
 	
 	/**
 	 * 获取并检查权限
-	 * add by zhixiao476@gmail.com
-	 * 2016年08月04日16:41:20
+	 * add by yinyibin
+	 * 2017年11月15日17:55:38
 	 */
 	private function role(){
 		//根据user_id查询当前用户权限
@@ -171,8 +170,8 @@ class MY_Controller extends CI_Controller{
 	
 	/**
 	 * 获取系统配置信息
-	 * add by zhixiao476@gmail.com
-	 * 2016年08月03日16:01:36
+	 * add by yinyibin
+	 * 2017年11月15日17:55:38
 	 */
 	private function getSetting(){
 		$params = array(
@@ -189,7 +188,7 @@ class MY_Controller extends CI_Controller{
 	
 	/**
 	 * 错误信息输出格式
-	 * add by zhixiao476@gmail.com
+	 * add by yinyibin
 	 * 2015年12月25日21:33:39
 	 */
 	public function showMessage($info){
@@ -200,8 +199,8 @@ class MY_Controller extends CI_Controller{
 	
 	/**
 	 * 统一的错误输出
-	 * add by zhixiao476@gmail.com
-	 * 2015年12月10日15:49:53
+	 * add by yinyibin
+	 * 2017年11月15日17:55:38
 	 */
 	public function splitJson($json,$status = 0,$type = 0) {
 		$array = array('status' => $status,'info' => $json);

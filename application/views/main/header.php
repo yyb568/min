@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-cache" />
-    <title>SADF </title>
+    <title><?=$settings['webname']?></title>
     <link href="<?=static_url("css")?>bootstrap.min.css" rel="stylesheet">
     <link href="<?=static_url("css")?>font-awesome.min.css"  rel="stylesheet">
     <link href="<?=static_url("css")?>animate.min.css"  rel="stylesheet">

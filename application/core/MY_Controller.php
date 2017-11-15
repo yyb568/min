@@ -35,8 +35,8 @@ class MY_Controller extends CI_Controller{
 	public function __construct(){
 		parent::__construct();
 		// $this->isLogin();			// 检查登录状态
-		$this->role();				//检查权限
-		$this->getSetting();		// 获取配置信息
+		//$this->role();				//检查权限
+		//$this->getSetting();		// 获取配置信息
 		$this->template['uname'] = $this->uname;
 		$this->template['userinfo'] = $this->userinfo;
 		$this->template['finance'] = $this->finance;

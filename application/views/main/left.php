@@ -7,7 +7,7 @@
 			<li class="nav-header">
 				<div class="dropdown profile-element">
 					<span><img alt="image" class="img-circle"
-						src="" height="64" width="64" /></span> <a
+						src="<?=static_url('img')?>a1.jpg" height="64" width="64" /></span> <a
 						data-toggle="dropdown" class="dropdown-toggle" href="#"> <span
 						class="clear"> <span class="block m-t-xs"></span> <span
 							class="text-muted text-xs block"><?=$uname?><b class="caret"></b></span>

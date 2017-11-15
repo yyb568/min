@@ -9,17 +9,6 @@ if ($info){
 }else{
 	$role = array();
 }
-$_provinceList = $_districtList = $_cityList = array();
-foreach((array)$pro as $key => $val){
-	$_provinceList[$val['ProvinceID']] = $val;
-}
-foreach((array)$dis as $key => $val){
-	$_districtList[$val['DistrictID']] = $val;
-}
-foreach((array)$city as $key => $val){
-	$_cityList[$val['CityID']] = $val;
-}
-
 ?>
 <body class="gray-bg">
     <div class="wrapper wrapper-content animated fadeInRight">
@@ -98,36 +87,5 @@ function doSubmit(){
 			showTips(data.info,'','',1);
 		}
 	},'json');
-}
-
-//选择地区
-function switchVoid(){	   
-	var area = $("#area").val();
-	showFarme('选择地区','<?=site_url("area/switch_list/?userType=1&area=")?>'+area,'50%','80%');
-}
-/**
- * 地区选择框回调获取地址
- */
-function parentSwitchArea(pro,cty,dis){
-	province = pro;
-	city = cty;
-	district = dis;
-	$("#area").val(province+","+city+","+district);
-	$("#area_txt").html("已选择").css("color","green");
-	if ($('input[name="finance"]:checked').val() == 2){		//只有选择地区管理员的时候才进行机型获取
-		$.get("<?=site_url("auth/getMachList")?>?pro="+province+"&city="+city+"&district="+district,function(data){
-			if (data.status == 1){
-				showTips(data.info,'error',1);
-			}else{
-				var html = '<select class="form-control" multiple="" id="mach_ids" name="mach_ids[]">';
-				$.each(data.info,function(i,j){
-	                html += '<option value="'+data.info[i]['id']+'">'+data.info[i]['mach_type']+'</option>';
-				});
-				html += '</select>';
-				$("#mach_lists").html(html);
-				$("#mach_ids").show();
-			}
-		},'json');
-	}
 }
 </script>

@@ -145,23 +145,32 @@ class MY_Controller extends CI_Controller{
 			foreach($menu as $key => $val){
 				if (in_array($val['id'],$role)){
 					if ($val['pid'] == 0){
-						$sql = "select menu_name,url from dw_menu where pid={$val['id']}";
-						$nums = $this->common_model->execute($sql);
 						$parentmenu[$val['id']] = $val;
-						$lastmenu[$val['id']] = $nums;
 					}
 				}
 			}
+			// 根据找到的父分类，找对应的子分类
+			$_pid = implode(",", $role);
+			$sql = "select id,menu_name,url,pid from dw_menu where pid in ({$_pid}) order by sortd ASC";
+			$nums = $this->common_model->execute($sql);
+			foreach($nums as $key => $val){
+				if (in_array($val['id'], $role)){
+					$lastmenu[$val['pid']][] = $val;
+				}
+			}
+			
+			
 		}else{
 			foreach($menu as $key => $val){
 				if ($val['pid'] == 0){
-					$sql = "select menu_name,url from dw_menu where pid={$val['id']}";
+					$sql = "select menu_name,url from dw_menu where pid={$val['id']} order by sortd ASC";
 					$nums = $this->common_model->execute($sql);
 					$parentmenu[$val['id']] = $val;
 					$lastmenu[$val['id']] = $nums;
 				}
 			}
 		}
+		//print_r($lastmenu);die;
 		$this->parentmenuList = $parentmenu;
 		$this->lastmenulist = $lastmenu;
 		$this->template['parentmenuList'] = $parentmenu;

@@ -143,11 +143,7 @@ class Auth extends MY_Controller{
 		$data['password'] = $this->input->post("password",true);
 		$data['uname'] = $this->input->post("uname",true);
 		$data['email'] = $this->input->post("email",true);
-		$data['finance'] = $this->input->post("finance",true);
-		$data['show_static'] = $this->input->post("show_static", true);
-		$area = $this->input->post("area",true);
 		$role_list = $this->input->post("role_list",true);
-		$mach_ids = $this->input->post("mach_ids",true);
 		
 		
 		if (empty($admin_id) && (empty($data['username']) || empty($data['password']) || empty($data['uname']))){
@@ -179,25 +175,6 @@ class Auth extends MY_Controller{
 		}else{
 			$data['role'] = serialize($role_list);
 		}
-		
-		// 将地区拆分成三份
-		$_area = explode(",", $area);
-		$data['province'] = $_area[0]; 
-		$data['district'] = (int)$_area[2]; 
-		$data['city'] = (int)$_area[1]; 
-		
-		if (empty($data['province']) && empty($data['city']) && empty($data['district'])){
-			$this->splitJson('请选择地区',1);
-		}
-		if (is_array($mach_ids)){
-			foreach($mach_ids as $key => $val){
-				$machIds .= $val.",";
-			}
-		}else{
-			$machIds = $mach_ids;
-		}
-		$data['mach_ids'] = $machIds;
-		
 		//入库
 		$this->common_model->set_table("auth");
 		$info_id = $this->common_model->save($data,$admin_id);

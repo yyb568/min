@@ -8,17 +8,7 @@
                         <form method="get" class="form-horizontal" id="form1" name="form1">
 	                            <div class="form-group">
 	                                <div class="input-group col-sm-2">
-                                        <input type="text" class="form-control" name="keywords" id="keywords" placeholder="可查询：手机号、发展人编码、身份证号、姓名、昵称、QQ号、Email地址"> <span class="input-group-btn"> <button type="button" class="btn btn-primary" onClick="doSearch('keyword')">搜索</button> </span>
-                                    </div>
-	                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-	                                <div class="input-group col-sm-2">
-	                                 <label class="col-sm-2 control-label">地区查询：</label>
-                                        <button data-toggle="button" class="btn btn-primary btn-outline" type="button" onClick="switchVoid();">选择地区</button>
-	                                    <input type="hidden" name="area" id="area" value="<?=$info['area'] ?>">
-	                                    &nbsp;<button type="button" class="btn btn-primary" onClick="doSearch('area')">搜索</button> </span>
-	                                    <div id="area_txt"></div>
+                                        <input type="text" class="form-control" name="keywords" id="keywords" placeholder="可查询：手机号、姓名"> <span class="input-group-btn"> <button type="button" class="btn btn-primary" onClick="doSearch('keyword')">搜索</button> </span>
                                     </div>
 	                            </div>
 	                            <div class="hr-line-dashed"></div>

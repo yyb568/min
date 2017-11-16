@@ -1,17 +1,4 @@
 <?php $this->load->view("main/header"); ?>
-<?php
-	$_provinceList = $_districtList = $_cityList = array();
-	foreach($provinceList as $key => $val){
-		$_provinceList[$val['ProvinceID']] = $val;
-	}
-	foreach($districtList as $key => $val){
-		$_districtList[$val['DistrictID']] = $val;
-	}
-	foreach($cityList as $key => $val){
-		$_cityList[$val['CityID']] = $val;
-	}
-	
-?>
 <body class="gray-bg">
     <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
@@ -19,17 +6,16 @@
                 <div class="ibox float-e-margins">
                     <div class="ibox-content">
                         <form method="get" class="form-horizontal" id="form1" name="form1">
-	                        <div class="hr-line-dashed"></div>
 	                            <div class="form-group">
 	                                <label class="col-sm-2 control-label">登录账号：</label>
-	                                <div class="col-sm-2">
+	                                <div class="col-sm-4">
 	                                    <input type="text" class="form-control" name="uname" id="uname" value="<?=$info['uname']?>">
 	                                </div>
 	                            </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">手机号：</label>
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
                                     <input type="text" class="form-control" name="phone" id="phone" value="<?=$info['phone']?>">
                                 </div>
                             </div>
@@ -43,7 +29,7 @@
                             <div class="hr-line-dashed"></div>
                         	<div class="form-group">
                                 <label class="col-sm-2 control-label">性别：</label>
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
                                 	<div class="radio">
                                         <label>
                                             <input type="radio"  value="1" id="sex" name="sex" <?php if ($info['sex'] == 1){echo 'checked';}?>>男</label>
@@ -57,7 +43,7 @@
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">微信昵称：</label>
-                                <div class="col-sm-2">
+                                <div class="col-sm-4">
                                 	<input type="text" class="form-control" name="nick" id="nick" value="<?=$info['nick']?>">
                                 </div>
                             </div>

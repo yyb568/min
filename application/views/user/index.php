@@ -6,9 +6,9 @@
     <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-                	<button class="btn btn-primary " type="button" onClick="addNew();"><i class="fa fa-check"></i>&nbsp;新增会员</button>
+                	<button class="btn btn-danger " type="button" onClick="addNew();"><i class="fa fa-check"></i>&nbsp;新增会员</button>
 					<button class="btn btn-primary " type="button" onClick="SearchTime();"><i class="fa fa-paste"></i>&nbsp;查询条件</button>
-					<button class="btn btn-danger " type="button" onClick="Exload();"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;导出数据</button>
+					<!-- <button class="btn btn-danger " type="button" onClick="Exload();"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;导出数据</button> -->
 					<button class="btn btn-success " type="button" onClick="window.location.reload();"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;刷新页面</button>
 					
                 </div>
@@ -26,8 +26,9 @@
                                 <thead>
                                         <tr>
                                             <th>登录账号</th>
-                                            <th>手机号(账号)</th>
+                                            <th>手机号</th>
                                             <th>余额</th>
+                                            <th>等级</th>
                                             <th>状态</th>
                                             <th>操作</th>
                                         </tr>
@@ -37,8 +38,13 @@
                                         <tr class="gradeX">
                                             <td><?=$val['uname']?></td>
                                             <td><a href="<?=site_url("user/index?phone={$val['phone']}")?>"><?=$val['phone']?></a></td>
-                                            <td><a href="javascript:void(0);" title="账户总余额"><?=$val['totalprice']?></a></td>
-                                           
+                                            <td><?=$val['totalprice']?></td>
+                                           <td><?php if ($val['level'] == 0){?>
+                                           	   普通用户
+                                           	   <?php }else{ ?>
+                                           	   VIP会员
+                                           	   <?php }?>
+                                           </td>
                                             <td>
                                             <?php if ($val['status'] == 0){ ?>
                                             	<a href="<?=site_url("user/index?st=-1&phone={$phone}&keyword={$keyword}&starttime={$start}&endtime={$end}&area={$area}")?>"><font color=red>冻结</font>
@@ -51,8 +57,6 @@
 					                                <button data-toggle="dropdown" class="btn btn-default btn-xs dropdown-toggle" aria-expanded="false">操作 <span class="caret"></span></button>
 					                                <ul class="dropdown-menu">
 					                                	<li><a href="javascript:void(0);LockInfo(<?=$val['id']?>);" class="font-bold">查看详情</a></li>
-					                                	<li class="divider"></li>
-					                                	<li><a href="javascript:void(0);Rest(<?=$val['id']?>);" class="font-bold">重置登录</a></li>
 					                                	<li class="divider"></li>
 					                                    <li><a href="javascript:void(0);Edit(<?=$val['id']?>);" class="font-bold">编辑</a></li>
 					                                    <li class="divider"></li>

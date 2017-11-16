@@ -43,11 +43,11 @@ class User extends MY_Controller{
 		$this->load->library('pagination');					// 分页类库加载
 
 		
-		$sql = "select id,totalprice,price,grandtotal,phone,unicode,nice,sex,email,qq,uname,uid,province,city,district,status,last_time,open_id from dw_users where 1=1";
+		$sql = "select id,uname,totalprice,phone,nice,level,sex,email,status,last_time,open_id from dw_users where 1=1";
 		$totalSql = "select count(id) as count from dw_users where 1=1";
 		// 搜索关键词
 		if (!empty($keyword) && is_numeric($keyword)){
-			$where .=" and (phone='{$keyword}' or unicode='{$keyword}' or qq='{$keyword}' or uid='{$keyword}')";
+			$where .=" and (phone='{$keyword})";
 		}elseif (!empty($keyword)){		//如果不是数字，则搜索其他
 			$where .=" and (nice like '%{$keyword}%' or uname like '%{$keyword}%') ";
 		}elseif (filter_var($keyword, FILTER_VALIDATE_EMAIL)){		//判断是否是邮箱
@@ -62,28 +62,10 @@ class User extends MY_Controller{
 		}
 		
 		if ($phone){$where .= " and phone ={$phone}";}
-		if ($unicode){$where .= " and unicode = {$unicode}";}
-		if ($qq){$where .= " and qq={$qq}";}
 		if ($st == -1){
 			$where .=" and status=0";
 		}elseif ($st == 1){
 			$where .=" and status=1";
-		}
-			
-		// 强制使用地区查询条件
-		if ($this->finance == 2){
-			$where .= " and province = {$this->userinfo['province']}";
-		}else{
-			if (!empty($area)){
-				$_area = explode(',', $area);
-				if ($_area[0]){$where .= " and province={$_area[0]}";}
-				if ($_area[1]){$where .= " and city={$_area[1]} ";}
-				if ($_area[2]){$where .= "and district={$_area[2]}";}
-			}else{
-				if ($pro){$where .= " and province={$pro}";}
-				if ($city){$where .= " and city = {$city}";}
-				if ($dis){$where .= " and district={$dis}";}
-			}
 		}
 		
 		//组合sql语句
@@ -129,16 +111,10 @@ class User extends MY_Controller{
 		//查询条件
 		$this->template['sex'] = $sex;
 		$this->template['phone'] = $phone;
-		$this->template['unicode'] = $unicode;
-		$this->template['dis'] = $dis;
-		$this->template['city'] = $city;
-		$this->template['pro'] = $pro;
 		$this->template['st'] = $st;
 		$this->template['keyword'] = $keyword;
-		$this->template['area'] = $area;
 		$this->template['start'] = $start;
 		$this->template['end'] = $end;
-		
 		$this->template['list'] = $list;
 		$this->template['Page'] = '<ul class="pagination ">'.rtrim($pageStr,"/").'</ul>';
 		$this->load->view("user/index", $this->template);
@@ -173,30 +149,16 @@ class User extends MY_Controller{
 	 */
 	public function doSave($user_id = 0){
 		$data['uname'] = $this->input->post('uname',true);
+		$data['password'] = $this->input->post("password",true);
 	    $data['phone']  = $this->input->post('phone',true);
-	    $data['unicode']  = $this->input->post('unicode',true);
 	    $data['sex'] = $this->input->post('sex',true);
-	    $data['qq']  = $this->input->post('qq',true);
-	    $data['email']  = $this->input->post('email',true);
-	    $data['uid']  = $this->input->post('uid',true);
-	    $area  = $this->input->post('area',true);
-	    $data['address']  = $this->input->post('address',true);
 	    $data['status']  = $this->input->post('status',true);
 	    
 	    
 	    //基本信息判断
-	    if (empty($data['uname'])){$this->splitJson('请填写姓名！',1);}
-	    if (empty($data['phone'])){$this->splitJson('请填写手机号！',1);}
-	    if (empty($data['unicode'])){$this->splitJson('请填写发展人编码',1);}
-	    if (empty($data['uid'])){$this->splitJson('请填写身份证号！',1);}
-	    
-	    //拆分地区数据
-	    $_area = explode(',', $area);
-	    $data['province'] = $_area[0];
-	    $data['district'] = $_area[2];
-	    $data['city'] = $_area[1];
-	    $data['created'] = time();
-	    
+	    if (empty($data['uname'])){$this->splitJson('请填写登录账号！',1);}
+	    if (empty($data['password'])){$this->splitJson('请填写密码！',1);}
+
 	    // 查询是否已经存在
 	    $params = array(
 	    		'table' => 'users',
@@ -205,14 +167,17 @@ class User extends MY_Controller{
 	    		'limit' => 1
 	    );
 	    if ($user_id){
-	    	$params['where'] = array('id !=' => $user_id,'uid' => $data['uid'], 'unicode' => $data['unicode']);
+	    	$params['where'] = array('id !=' => $user_id,'uname' => $data['uname'], 'phone' => $data['phone']);
 	    }else{
-	    	$params['where'] = array('uid' => $data['uid'], 'unicode' => $data['unicode']);
+	    	$params['where'] = array('uname' => $data['uname'], 'phone' => $data['phone']);
 	    }
 	    $userinfo = $this->common_model->get_list($params);
 	    if (!empty($userinfo)){
-	    	$this->splitJson('当前填写的 姓名、身份证号、发展人编码中至少有一项存在重复！',1);
+	    	$this->splitJson('当前填写的 姓名、手机号至少有一项存在重复！',1);
 	    }
+
+	    $this->load->library("hencrypt");
+		$data['password'] = $this->hencrypt->encrypt($data['password']);
 
 	    //准备入库
 	    $this->common_model->set_table("users");

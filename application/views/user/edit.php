@@ -21,11 +21,26 @@
                         <form method="get" class="form-horizontal" id="form1" name="form1">
 	                        <div class="hr-line-dashed"></div>
 	                            <div class="form-group">
-	                                <label class="col-sm-2 control-label">姓名：</label>
+	                                <label class="col-sm-2 control-label">登录账号：</label>
 	                                <div class="col-sm-2">
 	                                    <input type="text" class="form-control" name="uname" id="uname" value="<?=$info['uname']?>">
 	                                </div>
 	                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">手机号：</label>
+                                <div class="col-sm-2">
+                                    <input type="text" class="form-control" name="phone" id="phone" value="<?=$info['phone']?>">
+                                </div>
+                            </div>
+                           <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">登录密码：</label>
+                                <div class="col-sm-4">
+                                    <input type="password" class="form-control" name="password" id="password" value="<?=$info['password']?>">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
                         	<div class="form-group">
                                 <label class="col-sm-2 control-label">性别：</label>
                                 <div class="col-sm-2">
@@ -41,62 +56,9 @@
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">手机号：</label>
-                                <div class="col-sm-2">
-                                	<input type="text" class="form-control" name="phone" id="phone" value="<?=$info['phone']?>">
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">发展人编码：</label>
-                                <div class="col-sm-2">
-                                	<input type="text" class="form-control" name="unicode" id="unicode" value="<?=$info['unicode']?>">
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">昵称：</label>
+                                <label class="col-sm-2 control-label">微信昵称：</label>
                                 <div class="col-sm-2">
                                 	<input type="text" class="form-control" name="nick" id="nick" value="<?=$info['nick']?>">
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">QQ：</label>
-                                <div class="col-sm-2">
-                                	<input type="text" class="form-control" name="qq" id="qq" value="<?=$info['qq']?>">
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">邮箱：</label>
-                                <div class="col-sm-2">
-                                <input type="text" class="form-control" name="email" id="email" value="<?=$info['email']?>">
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">身份证号：</label>
-                                <div class="col-sm-4">
-                                	 <input type="text" class="form-control" name="uid" id="uid" value="<?=$info['uid']?>">
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">地区：</label>
-                                <div class="col-sm-2">
-                                <button data-toggle="button" class="btn btn-primary btn-outline" type="button" onClick="switchVoid();">选择地区</button>
-	                                    <input type="hidden" name="area" id="area" value="<?=$info['province'] ?>,<?=$info['city']?>,<?=$info['district']?>">
-	                                    <div id="area_txt">
-                               			<?=$_provinceList[$info['province']]['ProvinceName'] ?> - <?=$_districtList[$info['district']]['DistrictName'] ?> - <?=$_cityList[$info['city']]['CityName'] ?>
-                                		</div>
-                                </div>
-                            </div>
-                            <div class="hr-line-dashed"></div>
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label">详细地址：</label>
-                                <div class="col-sm-8">
-                                	<input type="text" class="form-control" name="address" id="address" value="<?=$info['address']?>">
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -127,15 +89,8 @@
     </div>
 <?php $this->load->view("main/footer");?>
 <script>
-
 //保存配置信息
 function doSubmit(){
-	var uid = $("#uid").val();
-	var reg = /^(\d{15}$|^\d{18}$|^\d{17}(\d|X|x))$/;
-	if (reg.test(uid) == false){
-		showTips('您输入的身份证号不正确！','error');
-		return false;
-	}
 	$.post("<?=site_url("user/doSave/{$info['id']}")?>",$("#form1").serialize(),function(data){
 		if (data.status == 0){
 			showTips('保存成功！','success','',1);
@@ -146,21 +101,5 @@ function doSubmit(){
 			showTips(data.info,'','',1);
 		}
 	},'json');
-}
-
-//选择地区
-function switchVoid(){	   
-	var area = $("#area").val();
-	showFarme('选择地区','<?=site_url("area/switch_list/?userType=1&area=")?>'+area,'70%','90%');
-}
-/**
- * 地区选择框回调获取地址
- */
-function parentSwitchArea(pro,cty,dis){
-	province = pro;
-	city = cty;
-	district = dis;
-	$("#area").val(province+","+city+","+district);
-	$("#area_txt").html("已选择").css("color","green");
 }
 </script>

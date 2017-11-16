@@ -1,17 +1,5 @@
 <?php $this->load->view("main/header"); ?>
-<?php
-	$_provinceList = $_districtList = $_cityList = array();
-	foreach($provinceList as $key => $val){
-		$_provinceList[$val['ProvinceID']] = $val;
-	}
-	foreach($districtList as $key => $val){
-		$_districtList[$val['DistrictID']] = $val;
-	}
-	foreach($cityList as $key => $val){
-		$_cityList[$val['CityID']] = $val;
-	}
-	
-?>
+
 <body class="gray-bg">
     <div class="wrapper wrapper-content animated fadeInRight">
     
@@ -37,11 +25,9 @@
                             <table class="footable table table-stripped" data-page-size="8" data-filter=#filter>
                                 <thead>
                                         <tr>
-                                            <th>姓名</th>
+                                            <th>登录账号</th>
                                             <th>手机号(账号)</th>
                                             <th>余额</th>
-                                            <th>所属地区</th>
-                                            <th>资料</th>
                                             <th>状态</th>
                                             <th>操作</th>
                                         </tr>
@@ -51,21 +37,13 @@
                                         <tr class="gradeX">
                                             <td><?=$val['uname']?></td>
                                             <td><a href="<?=site_url("user/index?phone={$val['phone']}")?>"><?=$val['phone']?></a></td>
-                                            <td><a href="javascript:void(0);" title="累计收入"><?=$val['grandtotal']?></a> / <a href="javascript:void(0);" title="账户总余额"><?=$val['totalprice']?></a> / <a href="javascript:void(0);" title="昨日收入"><?=$val['price']?></a></td>
-                                            <td><a href="<?=site_url("user/index?qq={$val['qq']}")?>"><?=$val['qq']?></a></td>
-                                            <td><a href="<?=site_url("user/index?pro={$val['province']}")?>"><?=$_provinceList[$val['province']]['ProvinceName'] ?></a> - <a href="<?=site_url("user/index?city={$val['city']}")?>"><?=$_cityList[$val['city']]['CityName'] ?></a> - <a href="<?=site_url("user/index?dis={$val['district']}")?>"><?=$_districtList[$val['district']]['DistrictName'] ?></a></td>
-                                            <td>
-                                            <?php if (empty($val['uname']) || empty($val['uid']) || empty($val['phone']) || empty($val['unicode']) || empty($val['province'])){ ?>
-                                            	<a href="<?=site_url("user/index?sd=1{$_params}")?>"><font color=red>未完善</font></a>
-                                            <?php }else{ ?>
-                                            	<a href="<?=site_url("user/index?sd=2{$_params}")?>"><font color=green>已完善</font></a>
-                                            <?php } ?>
-                                            </td>
+                                            <td><a href="javascript:void(0);" title="账户总余额"><?=$val['totalprice']?></a></td>
+                                           
                                             <td>
                                             <?php if ($val['status'] == 0){ ?>
-                                            	<a href="<?=site_url("user/index?st=-1&phone={$phone}&unicode={$unicode}&pro={$pro}&city={$city}&dis={$dis}&keyword={$keyword}&starttime={$start}&endtime={$end}&area={$area}")?>"><font color=red>冻结</font>
+                                            	<a href="<?=site_url("user/index?st=-1&phone={$phone}&keyword={$keyword}&starttime={$start}&endtime={$end}&area={$area}")?>"><font color=red>冻结</font>
                                             <?php }elseif ($val['status'] == 1){ ?>
-                                            	<a href="<?=site_url("user/index?st={$val['status']}&phone={$phone}&unicode={$unicode}&pro={$pro}&city={$city}&dis={$dis}&keyword={$keyword}&starttime={$start}&endtime={$end}&area={$area}")?>"><font color=green>正常</font>
+                                            	<a href="<?=site_url("user/index?st={$val['status']}&phone={$phone}&keyword={$keyword}&starttime={$start}&endtime={$end}")?>"><font color=green>正常</font>
                                             <?php } ?>
                                             </a></td>
                                             <td>

@@ -18,10 +18,7 @@
     <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-content">
-                <?php if ($finance != 2){ ?>
-                	<button class="btn btn-primary " type="button" onClick="addNew();"><i class="fa fa-check"></i>&nbsp;新增</button>
-                	<button class="btn btn-success " type="button" onClick="uploads();"><i class="fa fa-upload"></i>&nbsp;&nbsp;<span class="bold">导入原始数据</span></button>
-                <?php } ?>
+                	<button class="btn btn-primary " type="button" onClick="addNew();"><i class="fa fa-check"></i>&nbsp;新增会员</button>
 					<button class="btn btn-primary " type="button" onClick="SearchTime();"><i class="fa fa-paste"></i>&nbsp;查询条件</button>
 					<button class="btn btn-danger " type="button" onClick="Exload();"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;导出数据</button>
 					<button class="btn btn-success " type="button" onClick="window.location.reload();"><span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>&nbsp;刷新页面</button>
@@ -34,7 +31,7 @@
                 <div class="col-sm-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>注册用户管理 </h5>
+                            <h5>会员管理 </h5>
                         </div>
                         <div class="ibox-content">
                             <table class="footable table table-stripped" data-page-size="8" data-filter=#filter>
@@ -42,9 +39,7 @@
                                         <tr>
                                             <th>姓名</th>
                                             <th>手机号(账号)</th>
-                                            <th>发展人编码</th>
-                                            <th>收入</th>
-                                            <th>QQ</th>
+                                            <th>余额</th>
                                             <th>所属地区</th>
                                             <th>资料</th>
                                             <th>状态</th>
@@ -56,7 +51,6 @@
                                         <tr class="gradeX">
                                             <td><?=$val['uname']?></td>
                                             <td><a href="<?=site_url("user/index?phone={$val['phone']}")?>"><?=$val['phone']?></a></td>
-                                            <td><a href="<?=site_url("user/index?unicode={$val['unicode']}")?>"><?=$val['unicode']?></a></td>
                                             <td><a href="javascript:void(0);" title="累计收入"><?=$val['grandtotal']?></a> / <a href="javascript:void(0);" title="账户总余额"><?=$val['totalprice']?></a> / <a href="javascript:void(0);" title="昨日收入"><?=$val['price']?></a></td>
                                             <td><a href="<?=site_url("user/index?qq={$val['qq']}")?>"><?=$val['qq']?></a></td>
                                             <td><a href="<?=site_url("user/index?pro={$val['province']}")?>"><?=$_provinceList[$val['province']]['ProvinceName'] ?></a> - <a href="<?=site_url("user/index?city={$val['city']}")?>"><?=$_cityList[$val['city']]['CityName'] ?></a> - <a href="<?=site_url("user/index?dis={$val['district']}")?>"><?=$_districtList[$val['district']]['DistrictName'] ?></a></td>
@@ -165,10 +159,5 @@ function Exload(){
 
 	baseUrl += '&expload=1';						// 增加一个参数标示导出
 	window.location.href = baseUrl;
-}
-
-//上传规则文件
-function uploads(){
-	showFarme('导入老系统用户资料','<?=site_url("user/importData")?>/','70%','90%');
 }
 </script>

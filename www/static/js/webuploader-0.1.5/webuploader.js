@@ -4290,7 +4290,7 @@
     
                 if ( file.size > max ) {
                     file.setStatus( WUFile.Status.INVALID, 'exceed_size' );
-                    this.trigger( 'error', '图片过大', max, file );
+                    this.trigger( 'error', 'F_EXCEED_SIZE', max, file );
                     return false;
                 }
     
@@ -4691,9 +4691,6 @@
                 } catch( err ) {
                 }
     
-                me.dndOver = false;
-                me.elem.removeClass( prefix + 'over' );
-    
                 if ( data ) {
                     return;
                 }
@@ -4704,6 +4701,8 @@
                     }) );
                 });
     
+                me.dndOver = false;
+                me.elem.removeClass( prefix + 'over' );
                 return false;
             },
     
@@ -4779,7 +4778,7 @@
                 if (!elem) {
                     return;
                 }
-    
+                
                 elem.off( 'dragenter', this.dragEnterHandler );
                 elem.off( 'dragover', this.dragOverHandler );
                 elem.off( 'dragleave', this.dragLeaveHandler );
@@ -6329,8 +6328,6 @@
                         height: this.height
                     };
     
-                    debugger;
-    
                     // 读取meta信息。
                     if ( !me._metas && 'image/jpeg' === me.type ) {
                         Util.parseMeta( me._blob, function( error, ret ) {
@@ -6476,12 +6473,12 @@
     
                 // setter
                 if ( val ) {
-                    this._metas = val;
+                    this._meta = val;
                     return this;
                 }
     
                 // getter
-                return this._metas;
+                return this._meta;
             },
     
             destroy: function() {
@@ -8107,4 +8104,3 @@
     });
     return require('webuploader');
 });
-

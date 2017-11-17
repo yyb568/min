@@ -87,15 +87,8 @@ class User extends MY_Controller{
 		
 		$this->pagination->initialize($config);
 		$pageStr = $this->pagination->create_links();
-		
-		$this->template['cityList'] = $this->common_model->getDqList('cs');		//城市
-		$this->template['districtList'] = $this->common_model->getDqList('qx');		//区县
-		$this->template['provinceList'] = $this->common_model->getDqList('sf');		//省份
-		
-		//查询条件
-		$this->template['sex'] = $sex;
+
 		$this->template['phone'] = $phone;
-		$this->template['st'] = $st;
 		$this->template['keyword'] = $keyword;
 		$this->template['start'] = $start;
 		$this->template['end'] = $end;

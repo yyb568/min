@@ -26,19 +26,9 @@ class User extends MY_Controller{
 	public function index($offset = 0){
 		$pageSize = 20;
 		$phone = $this->input->get("phone",true);			//找出相同的手机号
-		$unicode = $this->input->get("unicode",true);		//找出相同的发展人编码
-		$qq = $this->input->get("qq",true);					//找出相同的qq号码
-		$dis = $this->input->get("dis",true);				//区县
-		$pro = $this->input->get("pro",true);				//省份
-		$city = $this->input->get("city",true);				//城市
-		$st = $this->input->get("st",true);					//过滤状态
-		$expload = $this->input->get("expload",true);		//将组合条件查询后的结果导出到Excel文件
-		
+		$expload = $this->input->get("expload",true);		//将组合条件查询后的结果导出到Excel文件	
 		$searchType = $this->input->get("searchtype",true);	//是否是搜索类型
 		$keyword = $this->input->get("keyword",true);		// 搜索查询关键词
-		$area = $this->input->get("area",true);				// 搜索查询地区
-		$start = $this->input->get("starttime",true);		// 搜索查询开始时间
-		$end = $this->input->get("endtime",true);			// 搜索查询结束时间
 		
 		$this->load->library('pagination');					// 分页类库加载
 
@@ -62,11 +52,6 @@ class User extends MY_Controller{
 		}
 		
 		if ($phone){$where .= " and phone ={$phone}";}
-		if ($st == -1){
-			$where .=" and status=0";
-		}elseif ($st == 1){
-			$where .=" and status=1";
-		}
 		
 		//组合sql语句
 		$sql .= $where;

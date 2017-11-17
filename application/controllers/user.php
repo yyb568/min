@@ -33,15 +33,14 @@ class User extends MY_Controller{
 		$this->load->library('pagination');					// 分页类库加载
 
 		
-		$sql = "select id,uname,totalprice,phone,nice,level,sex,email,status,last_time,open_id from dw_users where 1=1";
+		$sql = "select id,uname,totalprice,phone,nice,level,sex,status,last_time,open_id from dw_users where 1=1";
+		echo $sql;die;
 		$totalSql = "select count(id) as count from dw_users where 1=1";
 		// 搜索关键词
 		if (!empty($keyword) && is_numeric($keyword)){
 			$where .=" and (phone='{$keyword})";
 		}elseif (!empty($keyword)){		//如果不是数字，则搜索其他
 			$where .=" and (nice like '%{$keyword}%' or uname like '%{$keyword}%') ";
-		}elseif (filter_var($keyword, FILTER_VALIDATE_EMAIL)){		//判断是否是邮箱
-			$where .= " and email='{$keyword}'";
 		}
 		
 		// 时间
@@ -52,7 +51,7 @@ class User extends MY_Controller{
 		}
 		
 		if ($phone){$where .= " and phone ={$phone}";}
-		
+
 		//组合sql语句
 		$sql .= $where;
 		if (empty($expload)){			// 只有当不是导出文件的时候才加上分页

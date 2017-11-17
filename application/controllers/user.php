@@ -34,7 +34,6 @@ class User extends MY_Controller{
 
 		
 		$sql = "select id,uname,totalprice,phone,nice,level,sex,status,last_time,open_id from dw_users where 1=1";
-		echo $sql;die;
 		$totalSql = "select count(id) as count from dw_users where 1=1";
 		// 搜索关键词
 		if (!empty($keyword) && is_numeric($keyword)){

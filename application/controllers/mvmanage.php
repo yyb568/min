@@ -18,19 +18,15 @@ class Mvmanage extends  MY_Controller{
 	}
 	
 	/**
-	 * 佣金规则管理首页
+	 * 视频管理首页
 	 * add by yinyibin
 	 * 2016年08月05日09:20:38
 	 */
 	public function index($offset = 0){
 		$price = $this->input->get("price",true);		//价格过滤
-		$buss_id = $this->input->get("buss_id",true);	//平台商过滤
-		$dis = $this->input->get("dis",true);			//区县
-		$pro = $this->input->get("pro",true);			//省份
-		$city = $this->input->get("city",true);			//城市
+	
 		$starttime = $this->input->get("starttime",true);
 		$endtime = $this->input->get("endtime",true);
-		$area = $this->input->get("area", true);
 		$keyword = $this->input->get("keyword",true);		// 搜索查询关键词
 		$expload = $this->input->get("expload",true);		//将组合条件查询后的结果导出到Excel文件
 		
@@ -92,12 +88,7 @@ class Mvmanage extends  MY_Controller{
 		
 		$params['total'] = true;
 		$total = $this->common_model->get_list($params);
-		
-		//获取平台商
-		$buss = $this->common_model->getBussList();
-		foreach($buss as $key => $val){
-			$bussList[$val['id']] = $val;
-		}
+
 		
 		$this->load->library('pagination');
 		$config['base_url'] = site_url("excation/index/{page}?city={$city}&pro={$pro}&dis={$dis}&price={$price}&buss_id={$buss_id}&area={$area}&keyword={$keyword}");
@@ -111,11 +102,9 @@ class Mvmanage extends  MY_Controller{
 		$this->pagination->initialize($config);
 		$pageStr = $this->pagination->create_links();
 		
-		$this->template['cityList'] = $this->common_model->getDqList('cs');		//城市
-		$this->template['districtList'] = $this->common_model->getDqList('qx');		//区县
-		$this->template['provinceList'] = $this->common_model->getDqList('sf');		//省份
+	
 		$this->template['list'] = $list;
-		$this->template['bussList'] = $bussList;
+
 		$this->template['Page'] = '<ul class="pagination ">'.rtrim($pageStr,"/").'</ul>';
 		$this->load->view("mvmanage/index", $this->template);
 	}
@@ -160,14 +149,10 @@ class Mvmanage extends  MY_Controller{
 			$this->template['_dis'] = $dis;
 			
 		}else{
-			$pro = $this->common_model->getDqList('sf');
-			$city = $this->common_model->getDqList('cs');
-			$dis = $this->common_model->getDqList('qx');
-			$this->template['_pro'] = $pro;
-			$this->template['_city'] = $city;
-			$this->template['_dis'] = $dis;
+			//获取视频类型
+			$mvtypelist = $this->common_model->getMvTypeList();
+			$this->template['mvtypelist'] = $mvtypelist;
 		}
-		$this->template['busslist'] = $this->common_model->getBussList();
 		$this->load->view("mvmanage/edit", $this->template);
 	}
 	
@@ -177,51 +162,20 @@ class Mvmanage extends  MY_Controller{
 	 * 2016年08月05日13:12:11
 	 */
 	public function doSave($buss_id = 0){
-		$data['buss_id'] = $this->input->post("buss_id",true);
-		$data['mach_type'] = $this->input->post("mach_type",true);
-		$data['price'] = $this->input->post("price",true);
-		$data['starttime'] = $this->input->post("starttime",true);
-		$data['endtime'] = $this->input->post("endtime",true);
-		$area = $this->input->post("area",true);
+		$data['taskname'] = $this->input->post("taskname",true);
+		$data['filetype'] = $this->input->post("tasksource",true);
+		$data['filename'] = $this->input->post("filename",true);
+		$data['status'] = $this->input->post("status",true);
 		
-		//拆分地区数据
-		$_area = explode(',', $area);
-		
-		if (empty($data['buss_id']) || empty($data['mach_type']) || empty($data['price']) || empty($data['starttime']) || empty($data['endtime'])){
-			$this->splitJson('请填写完成信息！',1);
-		}
-		
-		if (empty($_area[0]) && empty($_area[1]) && empty($_area[2])){
-			$this->splitJson('请至少选择省份！',1);
-		}
-		
-		if ($data['starttime'] > $data['endtime']){
-			$this->splitJson('开始时间必须小于结束时间！',1);
-		}
-		
-		$data['starttime'] = strtotime($data['starttime']);
-		$data['endtime'] = strtotime($data['endtime']);
-		
-		//检查当前机型是否存在
-		$params = array(
-				'table' => 'excation',
-				'where' => array('mach_type' => $data['mach_type'], 'buss_id' => $data['buss_id'],'province' => $_area[0],'city' => $_area[0],'district' => $_darea[2]),
-				'limit' => 1
-		);
-		$info = $this->common_model->get_list($params);
-		if (!empty($info)){
-			$this->splitJson('当前 平台商 下已经添加过该机型，请务重复添加！',1);
-		}
-		
-		// 查询当前地区下，当前时间段内是否存在着一个已经在执行的标准
-		$data['province'] = (int)$_area[0];
-		$data['district'] = (int)$_area[2];
-		$data['city'] = (int)$_area[1];
+		$isGo = $this->input->get("isgo", true);
+print_r($data);die;
+		if (empty($data)){$this->splitJson('请填写相关信息！',1);}
+		if ($id > 0){
+			$data['isflag'] = 0;
+		}		
 		$data['created'] = time();
-
-		//入库
-		$this->common_model->set_table("excation");
-		$info_id = $this->common_model->save($data, $buss_id);
+		$this->common_model->set_table("csv");
+		$info_id = $this->common_model->save($data,$id);
 		if (empty($info_id)){
 			$this->splitJson('保存失败！',1);
 		}else{

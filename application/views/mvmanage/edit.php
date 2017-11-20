@@ -9,16 +9,17 @@
                              <div class="form-group">
                                 <label class="col-sm-2 control-label">视频名称：</label>
                                 <div class="col-sm-4">
-                                    <input type="text" class="form-control" name="taskname" id="taskname" value="<?=$info['taskname']?>">
+                                    <input type="text" class="form-control" name="vname" id="vname" value="<?=$info['vname']?>">
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
                             <div class="form-group">
-                                <label class="col-sm-2 control-label">视屏类型：</label>
+                                <label class="col-sm-2 control-label">视频类型：</label>
                                 <div class="col-sm-4">
-                                    <select class="form-control m-b" name="task_source" id="task_source">
-                                    <option value="0" <?php if ($info['filetype'] == 0){echo 'selected';} ?>>CBSS</option>
-                                    <option value="1" <?php if ($info['filetype'] == 1){echo 'selected';} ?>>ESS</option>
+                                    <select class="form-control m-b" name="cate_id" id="cate_id">
+                                    <?php foreach ((array) $mvtypelist as $key => $val){ ?>
+                                    <option value="<?=$val['id']?>" <?php if ($info['filetype'] == 0){echo 'selected';} ?>><?=$val['vname']?></option>
+                                   <?php }?>
                                 </select>
                                 </div>
                             </div>
@@ -37,6 +38,20 @@
                                     </div>
                                 </div>
                                                                 
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">是否上架：</label>
+                                <div class="col-sm-2">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" value="1" id="status" name="status" <?php if ($info['status'] == 1){echo 'checked';}?>>上架</label>
+                                    </div>
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" value="0" id="status" name="status" <?php if ($info['status'] == 0){echo 'checked';}?>>不上架</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -62,11 +77,12 @@ var UP_URL = '<?=site_url("bdupload/uploads")?>';
 <script>
 function doSubmit(isgo){
     if (!isgo){isgo=0;}     // 第一次上传的时候需要验证上次上传时间
-    var task_source = $("#task_source").val();
-    var taskname = $("#taskname").val();
+    var task_source = $("#cate_id option:selected").val();
+    var taskname = $("#vname").val();
     var filename = $("#filename").val();
+    var status = $("input[name='status']:checked").val()
     if (!task_source || !taskname || !filename){showTips('请填写任务信息！','error');return false;}
-    $.post("<?=site_url("unicom/original/doSave/{$info['id']}")?>?isgo="+isgo,{tasksource:task_source,taskname:taskname,filename:filename},function(data){
+    $.post("<?=site_url("mvmanage/doSave/{$info['id']}")?>?isgo="+isgo,{tasksource:task_source,taskname:taskname,filename:filename,status:status},function(data){
         if (data.status == 0){
             showTips("保存成功！",'success');
         }else{

@@ -37,7 +37,7 @@
                                             <th>流动比率</th>
                                             <th>股本差</th>
                                             <th>销售利润</th>
-                                            <th>周转率</th>
+                                            <!-- <th>周转率</th> -->
                                             <th>分数</th>
                                             <th>操作</th>
                                         </tr>
@@ -56,7 +56,7 @@
                                             <td><?=$val['current_ratio']?></td>
                                             <td><?=$val['total_equity']?></td>
                                             <td><?=$val['sales_rate']?></td>
-                                            <td><?=$val['total_turnover']?></td>
+                                            <!-- <td><?=$val['total_turnover']?></td> -->
                                             <td><?=$val['score']?></td>
 
                                             <td>

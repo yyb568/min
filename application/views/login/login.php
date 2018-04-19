@@ -9,8 +9,8 @@
     <link href="<?=static_url("css")?>font-awesome.min.css"  rel="stylesheet">
     <link href="<?=static_url("css")?>animate.min.css"  rel="stylesheet">
     <link href="<?=static_url("css")?>style.min.css"  rel="stylesheet">
-    <link href="<?=static_url("css") ?>/plugins/toastr/toastr.min.css" rel="stylesheet">
-    <link href="<?=static_url("js") ?>/plugins//layer/skin/layer.css" rel="stylesheet">
+    <link href="<?=static_url("css") ?>plugins/toastr/toastr.min.css" rel="stylesheet">
+    <link href="<?=static_url("js") ?>plugins/layer/skin/layer.css" rel="stylesheet">
     <script>if(window.top !== window.self){ window.top.location = window.location;}</script>
 </head>
 
@@ -20,7 +20,7 @@
         <div>
             <div>
 
-                <h1 class="logo-name">策略</h1>
+                <h1 class="logo-name">CL</h1>
 
             </div>
             <h3>智能选股系统</h3>

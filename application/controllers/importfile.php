@@ -239,7 +239,7 @@ class ImportFile extends MY_Controller{
 				if ($data['total_turnover'] > 0){
 					$data['score'] +=  1;
 				}
-				if ($data['stockcode'] == '数据来源'){
+				if ($data['stockcode'] == '数据来源：Wind资讯'){
 					continue;
 				}
 				$data['created'] = time();		

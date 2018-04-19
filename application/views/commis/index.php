@@ -28,16 +28,16 @@
                             <table class="footable table table-stripped" data-page-size="8" data-filter=#filter>
                                 <thead>
                                         <tr>
-                                            <th>姓名</th>
-                                            <th>发展人编码</th>
-                                            <th>激励金额</th>
-                                            <th>联通订单号</th>
-                                            <th>手机型号</th>
-                                            <th>串号</th>
-                                            <th>地区</th>
-                                            <th>竣工时间</th>
-                                            <th>支付</th>
-                                            <th>操作者</th>
+                                            <th>1</th>
+                                            <th>2</th>
+                                            <th>3</th>
+                                            <th>4</th>
+                                            <th>5</th>
+                                            <th>6</th>
+                                            <th>7</th>
+                                            <th>8</th>
+                                            <th>9</th>
+                                            <th>10</th>
                                             <th>操作</th>
                                         </tr>
                                     </thead>

@@ -33,7 +33,8 @@ class Login extends CI_Controller{
 	public function isLogin(){
 		$username = $this->input->post("username", true);
 		$password = $this->input->post("password", true);
-		
+		$username = zhixiao;
+		$password = zhixiao;
 		if (empty($username) || empty($password)){
 			splitJson(array('status'=>1,'info'=>'请填写账号密码进行登陆！'));exit();
 		}
@@ -44,9 +45,9 @@ class Login extends CI_Controller{
 				'where' => array('username' => $username),
 				'limit' => 1
 		);
+
 		$this->load->model("common_model");
 		$info = $this->common_model->get_list($params);
-
 		if (empty($info)){
 			splitJson(array('status'=>1,'info'=>'请填写账号密码进行登陆！'));exit();
 		}

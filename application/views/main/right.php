@@ -8,35 +8,18 @@
             <div class="wrapper wrapper-content">
                 <div class="container">
                     <div class="row  border-bottom white-bg dashboard-header">
-                    <?php if ($userinfo['role'] != -1){ ?>
                         <div class="col-sm-12">
 				            <blockquote class="text-warning" style="font-size:14px">
-				            	欢迎使用佣乐享信息管理平台
+				            	欢迎使用智能选股管理平台
 				                <br>您在使用过程中遇到任何问题或产生任何操作上的不便捷，请您及时反馈与我们
-				                <br>关注佣乐享
+				                <br>关注智能选股
 				                <br>
-				                <img src="<?=static_url("img")?>qrcode_ylx.jpg"  >
+				                <!-- <img src="<?=static_url("img")?>qrcode_ylx.jpg"  > -->
 				            </blockquote>
 				
 				            <hr>
 				        </div>
-				        <?php }if ($userinfo['show_static'] == 1 || $userinfo['finance'] == 1 || $userinfo['role'] == -1){ ?>
-                    	<div class="col-sm-12">
-			                <div class="ibox float-e-margins">
-			                    <div class="ibox-content">
-			                    	<div class="echarts" id="top15s"></div>
-			                    </div>
-			                </div>
-			            </div>
-                    
-                    	<div class="col-sm-12">
-			                <div class="ibox float-e-margins">
-			                    <div class="ibox-content">
-			                    	<div class="echarts" id="mach15s"></div>
-			                    </div>
-			                </div>
-			            </div>
-                    <?php } ?>
+				       
                     </div>
 
                 </div>

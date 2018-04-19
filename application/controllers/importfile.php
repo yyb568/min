@@ -198,9 +198,10 @@ class ImportFile extends MY_Controller{
 				}
 								
 			}
-			$data['score'] = 0;
+			
 			// 对数据进行整理
 			if (!empty($data)){
+				$data['score'] = 0;
 				if ($data['net_profit'] > 0){//净利润
 					$data['score'] +=  1;
 				}
@@ -228,11 +229,11 @@ class ImportFile extends MY_Controller{
 					$data['score'] +=  1;
 				}
 				// 销售利润率
-				if ($data['sales_rate'] > 0.1){
+				if ($data['sales_rate'] > 0.2){
 					$data['score'] +=  1;
 				}
 				// 销售利润率
-				if ($data['sales_rate'] > 0 && $data['sales_rate'] < 0.1){
+				if ($data['sales_rate'] > 0 && $data['sales_rate'] < 0.2){
 					$data['score'] +=  0.5;
 				}
 				//总资产周准率

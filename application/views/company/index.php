@@ -33,11 +33,11 @@
                                             <th>利润差</th>
                                             <th>流量净额</th>
                                             <th>现金流</th>
-                                            <!-- <th>净债务差</th> -->
+                                            <th>净债务差</th>
                                             <th>流动比率</th>
                                             <th>股本差</th>
                                             <th>销售利润</th>
-                                            <!-- <th>周转率</th> -->
+                                            <th>周转率</th>
                                             <th>分数</th>
                                             <th>操作</th>
                                         </tr>
@@ -52,11 +52,11 @@
                                             <td><?=$val['net_profit_difference']?></td>
                                             <td><?=$val['single_cash_flow']?></td>
                                             <td><?=$val['cash_flow']?></td>
-                                            <!-- <td><?=$val['company_debt']?></td> -->
+                                            <td><?=$val['company_debt']?></td>
                                             <td><?=$val['current_ratio']?></td>
                                             <td><?=$val['total_equity']?></td>
                                             <td><?=$val['sales_rate']?></td>
-                                            <!-- <td><?=$val['total_turnover']?></td> -->
+                                            <td><?=$val['total_turnover']?></td>
                                             <td><?=$val['score']?></td>
 
                                             <td>

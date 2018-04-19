@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache" />
-    <title>电影管理平台</title>
+    <title>智能选股系统</title>
     <link href="<?=static_url("css")?>bootstrap.min.css" rel="stylesheet">
     <link href="<?=static_url("css")?>font-awesome.min.css"  rel="stylesheet">
     <link href="<?=static_url("css")?>animate.min.css"  rel="stylesheet">
@@ -20,10 +20,10 @@
         <div>
             <div>
 
-                <h1 class="logo-name">MV</h1>
+                <h1 class="logo-name">策略</h1>
 
             </div>
-            <h3>电影管理平台</h3>
+            <h3>智能选股系统</h3>
 			<p>
             <form class="m-t" role="form">
                 <div class="form-group">

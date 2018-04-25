@@ -9,6 +9,11 @@
 	RewriteCond %{REQUEST_URI} !^(/index\.php|/static|/cache|/robots\.txt|/favicon\.ico|/uploads|/html)
 	RewriteRule ^(.*)$ /index.php/$1 [L]
 </IfModule>
+　　<FilesMatch ".(eot|ttf|otf|woff)">
+
+　　Header set Access-Control-Allow-Origin "http://donglu.net"
+
+　　</FilesMatch>
 php_value memory_limit 50M 
 php_value post_max_size 20M 
 php_value upload_max_filesize 20M 

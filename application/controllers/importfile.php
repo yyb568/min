@@ -236,13 +236,11 @@ class ImportFile extends MY_Controller{
 				if ($data['sales_rate'] > 0 && $data['sales_rate'] < 0.2){
 					$data['score'] +=  0.5;
 				}
-				//总资产周准率
+				//总资产周转率
 				if ($data['total_turnover'] > 0){
 					$data['score'] +=  1;
 				}
-				if ($data['stockcode'] == '数据来源：Wind资讯'){
-					continue;
-				}
+				
 				$data['created'] = time();		
 
                	//准备入库
